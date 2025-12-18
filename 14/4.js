@@ -1,15 +1,15 @@
 const prompt = require('prompt-sync')();
 
-const items = Number(prompt('How many items did you buy? '));
-let itemsPrice = [];
+const productos = Number(prompt('¿Cuántos productos compró? '));
+let preciosProductos = [];
 
-for (let i = 0; i < items; i++) {
-  itemsPrice.push(Number(prompt(`What is the price of the item ${i + 1}? `)));
+for (let i = 0; i < productos; i++) {
+  preciosProductos.push(Number(prompt(`¿Cuál es el precio del producto #${i + 1}? `)));
 }
 
-const total = itemsPrice.reduce((acc, curr) => acc + curr, 0);
+const total = preciosProductos.reduce((acc, curr) => acc + curr, 0);
 
-const calculateDiscount = () => {
+const calcularDescuento = () => {
   switch (true) {
     case total >= 1000:
       return total * 0.1;
@@ -20,9 +20,9 @@ const calculateDiscount = () => {
   }
 };
 
-console.log(`The total price of all items is ${total}.`);
-if (calculateDiscount() > 0) {
-  console.log(`You have a discount of ${calculateDiscount()}, making the final amount to pay: ${total - calculateDiscount()}`);
+console.log(`El precio total de todos los productos es ${total}.`);
+if (calcularDescuento() > 0) {
+  console.log(`Usted tiene un descuento de ${calcularDescuento()}, haciendo el total a pagar: ${total - calcularDescuento()}`);
 } else {
-  console.log('You are not elegible for a discount.');
+  console.log('Usted no es elegible para un descuento.');
 }

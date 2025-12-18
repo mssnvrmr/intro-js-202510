@@ -1,35 +1,35 @@
 const prompt = require('prompt-sync')();
 
-const flowerArray = ['Rose', 'Tulip', 'Daisy', 'Sunflower', 'Lily', 'Hyacinth', 'Iris', 'Daffodil', 'Poppy', 'Marigold'];
+const floresArray = ['Rosa', 'Tulipan', 'Margarita', 'Girasol', 'Lirio', 'Jacinto', 'Iris', 'Narciso', 'Amapola', 'Calendula'];
 
-let favoriteFlowers = [, , ,];
+let floresFavoritas = [, , ,];
 
-const questions = 5;
+const preguntas = 5;
 
 const askQuestions = () => {
-  let counter = 0;
+  let contador = 0;
 
-  for (let i = 0; i < questions; i++) {
-    const index = Math.floor(Math.random() * flowerArray.length);
-    const question = prompt(`${i + 1}. Do you like the flower ${flowerArray[index]} (y/n)?`);
+  for (let i = 0; i < preguntas; i++) {
+    const indice = Math.floor(Math.random() * floresArray.length);
+    const respuesta = prompt(`${i + 1}. ¿Te gusta la flor ${floresArray[indice]}? (s/n)?`);
 
-    if (favoriteFlowers.includes(flowerArray[index]) && question === 'y') {
-      console.log(`It is true! Your favorite flower is ${flowerArray[index]}`);
-      counter++;
-    } else if (favoriteFlowers.includes(flowerArray[index]) && question === 'n') {
-      console.log(`Liar! You like ${flowerArray[index]}`);
-      counter++;
-    } else if (!favoriteFlowers.includes(flowerArray[index]) && question === 'n') {
-      console.log(`True, you don't like ${flowerArray[index]}`);
-    } else if (!favoriteFlowers.includes(flowerArray[index]) && question === 'y') {
-      console.log(`Liar, you don't like ${flowerArray[index]}`);
+    if (floresFavoritas.includes(floresArray[indice]) && respuesta === 's') {
+      console.log(`¡Es verdad! Tu flor favorita es ${floresArray[indice]}`);
+      contador++;
+    } else if (floresFavoritas.includes(floresArray[indice]) && respuesta === 'n') {
+      console.log(`¡Miente! Te gusta ${floresArray[indice]}`);
+      contador++;
+    } else if (!floresFavoritas.includes(floresArray[indice]) && respuesta === 'n') {
+      console.log(`¡Es verdad! No te gusta ${floresArray[indice]}`);
+    } else if (!floresFavoritas.includes(floresArray[indice]) && respuesta === 's') {
+      console.log(`¡Miente! Te gusta ${floresArray[indice]}`);
     }
   }
-  console.log(`We found ${counter} flowers that you like.`);
+  console.log(`Encontramos ${contador} flores que te gustan.`);
 }
 
-for (let i = 0; i < favoriteFlowers.length; i++) {
-  favoriteFlowers[i] = prompt(`${i + 1}. Write your favorite flower's name: `);
+for (let i = 0; i < floresFavoritas.length; i++) {
+  floresFavoritas[i] = prompt(`Escribe el nombre de tu flor favorita #${i + 1}: `);
 }
 
 askQuestions();

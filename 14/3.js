@@ -1,20 +1,20 @@
 const prompt = require('prompt-sync')();
 
-const age = Number(prompt('What is your age? '));
+const edad = Number(prompt('¿Cuál es su edad? '));
 
-const ageClassifier = (age) => {
+const clasificarEdad = (edad) => {
   switch (true) {
-    case age > 0 && age <= 13:
-      return 'Child';
-    case age > 13 && age < 18:
-      return 'Teen';
-    case age >= 18 && age < 65:
-      return 'Adult';
-    case age >= 65:
-      return 'Senior Citizen';
+    case edad > 0 && edad <= 13:
+      return 'Niño';
+    case edad > 13 && edad < 18:
+      return 'Adolescente';
+    case edad >= 18 && edad < 65:
+      return 'Adulto';
+    case edad >= 65:
+      return 'Anciano';
     default:
-      return 'Invalid age';
+      return 'Ser Inexistente';
   }
 }
 
-console.log(`You are a ${ageClassifier(age)}`);
+console.log(`Usted es un ${clasificarEdad(edad)}`);

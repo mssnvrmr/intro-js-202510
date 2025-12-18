@@ -1,9 +1,9 @@
 const prompt = require('prompt-sync')();
 
-let continueLoop = true;
+let flag = true;
 
-const determineCarSource = (car) => {
-  switch (car) {
+const determinarOrigen = (marca) => {
+  switch (marca) {
     case '1':
     case '2':
     case '3':
@@ -13,7 +13,7 @@ const determineCarSource = (car) => {
   }
 }
 
-while (continueLoop) {
+while (flag) {
   console.log('--------------------------------');
   console.log('Lista de marcas de autos');
   console.log('1. Fiat');
@@ -24,17 +24,17 @@ while (continueLoop) {
   console.log('6. Otro (escriba la marca)');
   console.log('0. Salir');
   
-  let option = prompt('Escriba el numero que determine la marca de su auto: ');
+  let opcion = prompt('Escriba el numero que determine la marca de su auto: ');
   
-  if (option === '0') {
-    continueLoop = false;
+  if (opcion === '0') {
+    flag = false;
     console.log('Saliendo del programa...');
     break;
   }
 
-  if (option === '6') {
-    option = prompt('Escriba la marca de su auto: ');
+  if (opcion === '6') {
+    opcion = prompt('Escriba la marca de su auto: ');
   }
   
-  console.log(`El auto es ${determineCarSource(option)}`);
+  console.log(`El auto es ${determinarOrigen(opcion)}`);
 }

@@ -1,12 +1,12 @@
 const prompt = require('prompt-sync')();
 
-const students = 5;
-let grades = [];
+const cantidadNotas = 5;
+let notas = [];
 
-for (let i = 0; i < students; i++) {
-  grades.push(Number(prompt(`What is the grade of the student ${i + 1}? `)));
+for (let i = 0; i < cantidadNotas; i++) {
+  notas.push(Number(prompt(`Ingrese la nota ${i + 1}? `)));
 }
 
-const average = grades.reduce((acc, curr) => acc + curr, 0) / students;
+const promedio = notas.reduce((acc, curr) => acc + curr, 0) / cantidadNotas;
 
-console.log(`The average of the grades is ${average}`);
+console.log(`El promedio de las notas es ${promedio}`);

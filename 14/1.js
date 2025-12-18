@@ -1,11 +1,10 @@
 const prompt = require('prompt-sync')();
 
-const value = Number(prompt('What is the product´s value? '));
+const valor = Number(prompt('¿Cuál es el valor del producto? '));
+const impuesto = Number(prompt('¿Cuál es la tasa de impuestos? '));
 
-const tax = Number(prompt('What is the tax rate? '));
-
-const calculateTotal = (value, tax) => {
-    return value + (value * (tax / 100));
+const calcularTotal = (valor, impuesto) => {
+    return valor + (valor * (impuesto / 100));
 };
 
-console.log(`The price total with tax is ${calculateTotal(value, tax)}`);
+console.log(`El precio total con impuestos es ${calcularTotal(valor, impuesto)}`);

@@ -14,9 +14,9 @@ const entrenarHoras = (horas) => {
 while (deportista.energia > 0) {
   const horas = Number(prompt('¿Cuántas horas quieres entrenar? '));
   if (horas * 5 > deportista.energia) {
-    console.log(`${deportista.nombre} solo tiene ${deportista.energia} de energia restante, siendo un máximo de ${deportista.energia / 5} horas disponibles para seguir entrenando.`);
+    console.log(`${deportista.nombre} solo tiene ${deportista.energia} de energía restante, siendo un máximo de ${deportista.energia / 5} horas disponibles para seguir entrenando.`);
     continue;
   }
   entrenarHoras(horas);
-  console.log(`${deportista.nombre} ha entrenado ${horas} horas, ahora tiene ${deportista.energia} de energia restante y ${deportista.experiencia} de experiencia acumulada.`);
+  console.log(`${deportista.nombre} ha entrenado ${horas} horas, ahora tiene ${deportista.energia} de energía restante y ${deportista.experiencia} de experiencia acumulada.`);
 }
