@@ -1,7 +1,10 @@
 // Llamado a la libreria prompt-sync
 const prompt = require('prompt-sync')();
 
-// Arreglo de objetos de libros
+/* 
+  Consigna 1) Estructura de datos
+  A) array de objetos llamado libros que contenga 10 libros
+*/
 let libros = [
   {
     id: 1,
@@ -76,7 +79,10 @@ let libros = [
   }
 ];
 
-// Arreglo de objetos de usuarios
+/* 
+  Consigna 1) Estructura de datos
+  B) Array de objetos llamado usuarios que contenga 5 usuarios
+*/
 let usuarios = [
   {
     id: 1,
@@ -114,6 +120,7 @@ let usuarios = [
 let salir = false;
 
 /*
+  Función auxiliar para Consigna 2, punto A.
   Función para validar la existencia de un libro.
   @param {Object} libroAVerificar - Objeto de libro a verificar
   @returns {boolean} - True si el libro existe, false si no existe
@@ -137,6 +144,7 @@ const verificarExistenciaLibro = (libroAVerificar) => {
 }
 
 /*
+  Función auxiliar para Consigna 2, punto A & Consigna 3, punto A.
   Función para generar un id único para un nuevo libro o usuario
   @param {Array} array - Array a revisar
   @returns {number} - ID único
@@ -149,6 +157,7 @@ const generarId = (array) => {
 }
 
 /*
+  Función auxiliar para Cosigna 2, punto A
   Función para procesar los datos de un libro
   @returns {string} - Mensaje de éxito o error
 */
@@ -168,7 +177,8 @@ const procesarLibro = () => {
 }
 
 /*
-  Función para agregar un libro al arreglo de libros
+  Consigna 2) Funciones de gestión de libros
+  A) Función para agregar un libro al arreglo de libros
   @param {number} id - ID del libro
   @param {string} titulo - Título del libro
   @param {string} autor - Autor del libro
@@ -193,6 +203,7 @@ const agregarLibro = (id, titulo, autor, anio, genero) => {
 }
 
 /*
+  Función auxiliar para Consigna 2, punto B
   Función para imprimir el menú de búsqueda por criterio
   @returns {void}
 */
@@ -237,7 +248,8 @@ const imprimirMenuBusquedaCriterio = () => {
 }
 
 /*
-  Función linear para buscar un libro mediante un criterio y un valor
+  Consigna 2) Funciones de gestión de libros
+  B) Función de búsqueda linear para buscar un libro mediante un criterio y un valor
   @param {string} criterio - Criterio de búsqueda
   @param {string} valor - Valor de búsqueda
   @returns {string} - Mensaje de éxito o error
@@ -281,6 +293,7 @@ const buscarLibro = (criterio, valor) => {
 }
 
 /*
+  Función auxiliar para Consigna 2, punto C
   Función para imprimir el menú de ordenamiento
   @returns {void}
 */
@@ -311,11 +324,13 @@ const imprimirMenuOrdenamiento = () => {
 }
 
 /*
-  Función para ordenar los libros por un criterio
+  Consigna 2) Funciones de gestión de libros
+  C) Función de ordenamiento burbuja para ordenar los libros por un criterio
   @param {string} criterio - Criterio de ordenamiento
   @returns {string} - Mensaje de éxito
 */
 const ordenarLibros = (criterio) => {
+  // Para legibilidad, se separaron las funciones de ordenamiento por criterio en específico
   switch (criterio) {
     case 'titulo':
       return ordenarPorTitulo();
@@ -327,7 +342,8 @@ const ordenarLibros = (criterio) => {
 }
 
 /*
-  Función para ordenar los libros por título alfabéticamente
+  Función auxiliar para Consigna 2, punto C
+  Función de ordenamiento burbuja para ordenar los libros por título alfabéticamente
   @returns {string} - Mensaje de éxito
 */
 const ordenarPorTitulo = () => {
@@ -354,7 +370,8 @@ const ordenarPorTitulo = () => {
 }
 
 /*
-  Función para ordenar los libros por año de publicación
+  Función auxiliar para Consigna 2), punto C
+  Función de ordenamiento burbuja para ordenar los libros año de publicación
   @returns {string} - Mensaje de éxito
 */
 const ordenarPorAnio = () => {
@@ -385,7 +402,8 @@ const ordenarPorAnio = () => {
 }
 
 /*
-  Función para borrar un libro por su ID.
+  Consigna 2) Funciones de gestión de libros
+  D) Función para borrar un libro por su ID.
   @param {number} id - ID del libro a borrar
   @returns {string} - Mensaje de éxito o error
 */
@@ -417,6 +435,7 @@ const borrarLibro = (id) => {
 }
 
 /*
+  Función auxiliar para muchas Consignas que deben imprimir los libros después de procesados.
   Función para formatear el array de libros en un formato legible
   @returns {string} - String formateado con la información de los libros
 */
@@ -432,6 +451,7 @@ const imprimirLibros = (librosAImprimir) => {
 }
 
 /*
+  Función auxiliar para Consigna 3, punto A
   Función para procesar los datos de un usuario
   @returns {string} - Mensaje de éxito o error
 */
@@ -450,6 +470,7 @@ const procesarUsuario = () => {
 }
 
 /*
+  Función auxiliar para Consigna 3, punto A
   Función para validar la existencia de un usuario a base de su email.
   @param {string} emailUsuario - Email del usuario a verificar
   @returns {boolean} - True si el usuario existe, false si no existe
@@ -459,7 +480,8 @@ const verificarExistenciaUsuario = (emailUsuario) => {
 }
 
 /*
-  Función para agregar un usuario al arreglo de usuarios
+  Consigna 3) Gestión de usuarios
+  A) Función para agregar un usuario al arreglo de usuarios
   @param {Object} usuario - Objeto del usuario a registrar
   @returns {string} - Mensaje de éxito
 */
@@ -473,7 +495,8 @@ const registrarUsuario = (nombre, email) => {
 }
 
 /*
-  Función para formatear el array de usuarios en un formato legible
+  Consigna 3) Gestión de usuarios
+  B) Función para formatear el array de usuarios en un formato legible
   @returns {string} - String formateado con la información de los usuarios
 */
 const mostrarTodosLosUsuarios = () => {
@@ -489,6 +512,7 @@ const mostrarTodosLosUsuarios = () => {
 }
 
 /*
+  Función auxiliar para Consigna 3, punto A
   Función para obtener la información de los libros prestados a un usuario
   @param {number} idUsuario - Indice del usuario en el array de usuarios
   @returns {string} - String formateado con la información de los libros prestados
@@ -510,7 +534,8 @@ const imprimirLibrosPrestadosAUsuario = (idUsuario) => {
 }
 
 /*
-  Función para buscar un usuario por su email
+  Consigna 3) Gestión de usuarios
+  C) Función para buscar un usuario por su email
   @param {string} email - Email del usuario a buscar
   @returns {string} - Mensaje de éxito o error
 */
@@ -530,7 +555,8 @@ const buscarUsuario = (email) => {
 }
 
 /*
-  Función para borrar un usuario por su nombre y email
+  Consigna 3) Gestión de usuarios
+  D) Función para borrar un usuario por su nombre y email
   @param {string} nombre - Nombre del usuario a borrar
   @param {string} email - Email del usuario a borrar
   @returns {string} - Mensaje de éxito o error
@@ -555,7 +581,8 @@ const borrarUsuario = (nombre, email) => {
 }
 
 /*
-  Función para prestar un libro a un usuario
+  Consigna 4) Sistema de préstamos
+  A) Función para prestar un libro a un usuario
   @param {number} idUsuario - ID del usuario al que se presta el libro
   @param {number} idLibro - ID del libro a prestar
   @returns {string} - Mensaje de éxito o error
@@ -594,7 +621,8 @@ const prestarLibro = (idLibro, idUsuario) => {
 }
 
 /*
-  Función para que un usuario regrese un libro prestado
+  Consigna 4) Sistema de préstamos
+  B) Función para que un usuario regrese un libro prestado
   @param {number} idLibro - ID del libro a devolver
   @param {number} idUsuario - ID del usuario que devuelve el libro
   @returns {string} - Mensaje de éxito o error
@@ -634,7 +662,8 @@ const devolverLibro = (idLibro, idUsuario) => {
 }
 
 /*
-  Función para generar un reporte de libros
+  Consigna 5) Sistema de reportes
+  A) Función para generar un reporte de libros
   @returns {string} - Mensaje de éxito
 */
 const generarReporteLibros = () => {
@@ -655,6 +684,7 @@ const generarReporteLibros = () => {
 }
 
 /*
+  Funcion auxiliar para Consignia 5, punto A
   Función para generar un reporte de cantidad de libros por género
   @returns {string} - Reporte de libros por género
 */
@@ -672,7 +702,8 @@ const librosPorGenero = () => {
 }
 
 /*
-  Función para identificar libros por palabras
+  Consigna 6) Identificación Avanzada de libros
+  A) Función para identificar libros por palabras
   @returns {string} - Mensaje de éxito
 */
 const librosConPalabrasEnTitulo = () => {
@@ -701,6 +732,7 @@ const librosConPalabrasEnTitulo = () => {
 }
 
 /*
+  Función auxiliar para Consigna 6, punto A
   Función para verificar si un carácter es una letra alfabética
   @param {string} caracter - Carácter a verificar
   @returns {boolean} - True si el carácter es una letra alfabética, false si no es una letra alfabética
@@ -713,6 +745,7 @@ const esLetra = (caracter) => {
 };
 
 /*
+  Función auxiliar para Consigna 6, punto A
   Función para verificar si una palabra es alfabética
   @param {string} palabra - Palabra a verificar
   @returns {boolean} - True si la palabra es alfabética, false si no es alfabética
@@ -730,7 +763,8 @@ const esPalabraAlfabetica = (palabra) => {
 };
 
 /*
-  Función para calcular estadísticas
+  Consigna 7) Cálculos Estadísticos
+  A) Función para calcular estadísticas
   @returns {string} - Mensaje de éxito
 */
 const calcularEstadisticas = () => {
@@ -745,6 +779,7 @@ const calcularEstadisticas = () => {
 }
 
 /*
+  Función auxiliar para Consigna 7, punto A
   Función para calcular el promedio de años de publicación de los libros
   @returns {number} - Promedio de años de publicación de los libros
 */
@@ -756,6 +791,7 @@ const promedioAnios = () => {
 /* Disclaimer: Entiendo que hay que usar Math para resolver esto pero es que no es posible bajo la lógica definida. "Año de publicación más frecuente" implica que hay un número repetido en un grupo de números, y no es necesario hacer ningún tipo de evaluación matemática (ninguna que ofrezca Math) para determinar qué número se repite. No le hallo sentido en forzar el uso de Math en esta función. Pero si piensan quitarme puntos porque no usé math, adelante. Apreciaría que expliquen claramente cuál era la intención de esta función para aplicarlo en un futuro. */
 
 /*
+  Función auxiliar para Consigna 7, punto A
   Función para obtener el año de publicación más frecuente
   @returns {number} - Año de publicación más frecuente
 */
@@ -765,6 +801,7 @@ const anioMasFrecuente = () => {
 }
 
 /*
+  Función auxiliar para Consigna 7, punto A
   Función para calcular la diferencia de años entre el libro más antiguo y el más nuevo
   @returns {number} - Diferencia de años entre el libro más antiguo y el más nuevo
 */
@@ -776,7 +813,8 @@ const diferenciaAnios = () => {
 }
 
 /*
-  Función para normalizar los datos
+  Consigna 8) Manejo de Cadenas
+  A) Función para normalizar los datos
   @returns {string} - Mensaje de éxito
 */
 const normalizarDatos = () => {
@@ -797,6 +835,7 @@ const normalizarDatos = () => {
 }
 
 /*
+  Función auxiliar para Consigna 9, punto A
   Función para imprimir el menú principal
   @returns {void}
 */
@@ -821,7 +860,8 @@ const imprimirMenuPrimario = () => {
 }
 
 /*
-  Función para mostrar el menú principal
+  Consigna 9) Interfaz de Usuario por Consola
+  A) Función para mostrar el menú principal
   @returns {void}
 */
 const menuPrincipal = () => {
@@ -876,10 +916,10 @@ const menuPrincipal = () => {
       case 13: // Calcular estadisticas
         console.log(calcularEstadisticas());
         break;
-      case 14: // Normlizar datos
+      case 14: // Normalizar datos
         console.log(normalizarDatos());
         break;
-      case 15: // Mostrar libros (agregué esta función para mayor facilidad de visibilidad de los libros agregados o eliminados)
+      case 15: // Mostrar libros
         console.log(`\n**Lista de libros**\n${imprimirLibros(libros)}\n`);
         break;
       case 0: // Salir del program
