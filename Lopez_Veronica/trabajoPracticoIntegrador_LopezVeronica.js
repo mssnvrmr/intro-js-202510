@@ -2,102 +2,108 @@
 const prompt = require('prompt-sync')();
 
 // Arreglo de objetos de libros
-let libros = [{
-  id: 1,
-  titulo: '11/22/63',
-  autor: 'Stephen King',
-  anio: 2011,
-  genero: 'Suspenso',
-  disponible: false,
-}, {
-  id: 2,
-  titulo: '1984',
-  autor: 'George Orwell',
-  anio: 1949,
-  genero: 'Ciencia ficción',
-  disponible: false,
-}, {
-  id: 3,
-  titulo: 'Fahrenheit 451',
-  autor: 'Ray Bradbury',
-  anio: 1953,
-  genero: 'Ciencia ficción',
-  disponible: false,
-}, {
-  id: 4,
-  titulo: 'Orgullo y prejuicio',
-  autor: 'Jane Austen',
-  anio: 1813,
-  genero: 'Romance',
-  disponible: false,
-}, {
-  id: 5,
-  titulo: 'Cien años de soledad',
-  autor: 'Gabriel García Márquez',
-  anio: 1967,
-  genero: 'Novela',
-  disponible: true,
-}, {
-  id: 6,
-  titulo: 'Los 101 dalmatas',
-  autor: 'Dodie Smith',
-  anio: 1986,
-  genero: 'Ficción',
-  disponible: false,
-}, {
-  id: 7,
-  titulo: 'El alquimista',
-  autor: 'Paulo Coelho',
-  anio: 1988,
-  genero: 'Novela',
-  disponible: false,
-}, {
-  id: 8,
-  titulo: 'El arte de la guerra',
-  autor: 'Sun Tzu',
-  anio: 500,
-  genero: 'Estrategia',
-  disponible: false,
-}, {
-  id: 9,
-  titulo: 'El gato negro',
-  autor: 'Edgar Allan Poe',
-  anio: 1843,
-  genero: 'Terror',
-  disponible: false,
-}, {
-  id: 10,
-  titulo: 'El código Da Vinci',
-  autor: 'Dan Brown',
-  anio: 2003,
-  genero: 'Suspenso',
-  disponible: false,
-}
+let libros = [
+  {
+    id: 1,
+    titulo: '11/22/63',
+    autor: 'Stephen King',
+    anio: 2011,
+    genero: 'Suspenso',
+    disponible: false,
+  }, {
+    id: 2,
+    titulo: '1984',
+    autor: 'George Orwell',
+    anio: 1949,
+    genero: 'Ciencia ficción',
+    disponible: false,
+  }, {
+    id: 3,
+    titulo: 'Fahrenheit 451',
+    autor: 'Ray Bradbury',
+    anio: 1953,
+    genero: 'Ciencia ficción',
+    disponible: false,
+  }, {
+    id: 4,
+    titulo: 'Orgullo y prejuicio',
+    autor: 'Jane Austen',
+    anio: 1813,
+    genero: 'Romance',
+    disponible: false,
+  }, {
+    id: 5,
+    titulo: 'Cien años de soledad',
+    autor: 'Gabriel García Márquez',
+    anio: 1967,
+    genero: 'Novela',
+    disponible: true,
+  }, {
+    id: 6,
+    titulo: 'Los 101 dalmatas',
+    autor: 'Dodie Smith',
+    anio: 1986,
+    genero: 'Ficción',
+    disponible: false,
+  }, {
+    id: 7,
+    titulo: 'El alquimista',
+    autor: 'Paulo Coelho',
+    anio: 1988,
+    genero: 'Novela',
+    disponible: false,
+  }, {
+    id: 8,
+    titulo: 'El arte de la guerra',
+    autor: 'Sun Tzu',
+    anio: 500,
+    genero: 'Estrategia',
+    disponible: false,
+  }, {
+    id: 9,
+    titulo: 'El gato negro',
+    autor: 'Edgar Allan Poe',
+    anio: 1843,
+    genero: 'Terror',
+    disponible: false,
+  }, {
+    id: 10,
+    titulo: 'El código Da Vinci',
+    autor: 'Dan Brown',
+    anio: 2003,
+    genero: 'Suspenso',
+    disponible: false,
+  }
 ];
 
 // Arreglo de objetos de usuarios
 let usuarios = [
   {
+    id: 1,
     nombre: 'Juan Perez',
     email: 'juan.perez@gmail.com',
     librosPrestados: [1, 4],
   },
   {
+    id: 2,
     nombre: 'Maria Gomez',
     email: 'maria.gomez@gmail.com',
     librosPrestados: [2, 6],
   },
   {
+    id: 3,
     nombre: 'Pedro Rodriguez',
     email: 'pedro.rodriguez@gmail.com',
     librosPrestados: [3, 8],
   },
   {
+    id: 4,
     nombre: 'Ana Lopez',
     email: 'ana.lopez@gmail.com',
     librosPrestados: [9],
   },
   {
+    id: 5,
     nombre: 'Carlos Rodriguez',
     email: 'carlos.rodriguez@gmail.com',
     librosPrestados: [7, 10],
@@ -114,7 +120,7 @@ let salir = false;
 */
 const verificarExistenciaLibro = (libroAVerificar) => {
   /* 
-    Itera por el array para comparar cada libro con el libro a verificar.
+    Itera por el array de libros para comparar cada libro con el libro que se está intentando agregar.
     Verifica que todos los atributos de libroAVerificar coincidan con un libro en el array.
   */
   return libros.some((libro) => {
@@ -131,32 +137,34 @@ const verificarExistenciaLibro = (libroAVerificar) => {
 }
 
 /*
-  Función para procesar los datos de un usuario
-  @returns {string} - Mensaje de éxito o error
+  Función para generar un id único para un nuevo libro o usuario
+  @param {Array} array - Array a revisar
+  @returns {number} - ID único
 */
-const procesarUsuario = () => {
-  console.log('\n**Datos del nuevo usuario**\n');
-  const nombre = prompt('Ingrese el nombre: ').trim();
-  const email = prompt('Ingrese el email: ').trim();
-
-  // Verificar si el usuario ya existe antes de agregarlo
-  if (verificarExistenciaUsuario(email)) {
-    return `\n**Este usuario ya está registrado**\n`;
-  }
-  // Pasar los datos procesados a la función para agregar el usuario
-  return agregarUsuario({ id: usuarios.length + 1, nombre: nombre, email: email, librosPrestados: [] });
+const generarId = (array) => {
+  // Se obtiene el id más alto del array
+  const idMaximo = Math.max(...array.map((item) => item.id));
+  // Se retorna el id más alto + 1
+  return idMaximo + 1;
 }
 
 /*
-  Función para validar la existencia de un libro.
-  @param {string} emailUsuario - Email del usuario a verificar
-  @returns {boolean} - True si el usuario existe, false si no existe
+  Función para procesar los datos de un libro
+  @returns {string} - Mensaje de éxito o error
 */
-const verificarExistenciaUsuario = (emailUsuario) => {
-  /* 
-    Itera a través del array usuarios y verifica que algun usuario tenga el  mismo email que el del parametro.
-  */
-  return usuarios.some((usuario) => usuario.email === emailUsuario);
+const procesarLibro = () => {
+  // Se imprimen los prompts para la toma de datos del nuevo libro
+  console.log('\n**Datos del nuevo libro**\n');
+  const titulo = prompt('Ingrese el título: ').trim();
+  const autor = prompt('Ingrese el autor: ').trim();
+  const anio = Number(prompt('Ingrese el año de publicación: ').trim());
+  const genero = prompt('Ingrese el género: ').trim();
+  // Verificar si el libro ya existe antes de agregarlo
+  if (verificarExistenciaLibro({ titulo: titulo, autor: autor, anio: anio })) {
+    return `\n**El libro ${titulo} que intenta ingresar ya existe**\n`;
+  }
+  // Pasar los datos procesados a la función para agregar el libro
+  return agregarLibro(generarId(libros), titulo, autor, anio, genero);
 }
 
 /*
@@ -180,106 +188,8 @@ const agregarLibro = (id, titulo, autor, anio, genero) => {
   }
   //Agegar el libro nuevo al arreglo de libros
   libros.push(libroNuevo);
+  // Retornar un mensaje de éxito.
   return `\n**Libro ${libroNuevo.titulo} agregado correctamente**\n`;
-}
-
-/*
-  Función para procesar los datos de un libro
-  @returns {string} - Mensaje de éxito o error
-*/
-const procesarLibro = () => {
-  console.log('\n**Datos del nuevo libro**\n');
-  const id = libros.length + 1;
-  const titulo = prompt('Ingrese el título: ').trim();
-  const autor = prompt('Ingrese el autor: ').trim();
-  const anio = Number(prompt('Ingrese el año de publicación: ').trim());
-  const genero = prompt('Ingrese el género: ').trim();
-  // Verificar si el libro ya existe antes de agregarlo
-  if (verificarExistenciaLibro({ titulo: titulo, autor: autor, anio: anio })) {
-    return `\n**El libro ${titulo} que intenta ingresar ya existe**\n`;
-  }
-  // Pasar los datos procesados a la función para agregar el libro
-  return agregarLibro(id, titulo, autor, anio, genero);
-}
-
-/*
-  Función para agregar un usuario al arreglo de usuarios
-  @param {Object} usuario - Objeto del usuario a agregar
-  @returns {string} - Mensaje de éxito
-*/
-const agregarUsuario = (usuario) => {
-  usuarios.push(usuario);
-  return `\n**Usuario ${usuario.nombre} agregado correctamente**\n`;
-}
-
-/*
-  Función linear para buscar un libro mediante un criterio y un valor
-  @param {string} criterio - Criterio de búsqueda
-  @param {string} valor - Valor de búsqueda
-  @returns {string} - Mensaje de éxito o error
-*/
-const buscarLibro = (criterio, valor) => {
-  // Se inicializa un array vacío para almacenar los libros encontrados.
-  let librosEncontrados = [];
-
-  //Bucle para iterar por el array de libros.
-  for (let i = 0; i < libros.length; i++) {
-    const valorLibro = libros[i][criterio];
-
-    if (criterio === 'disponible') {
-      if (valorLibro === valor) {
-        librosEncontrados.push(libros[i]);
-      }
-    } else if (criterio === 'anio' || criterio === 'id') {
-      // Para id y anio, se comparan como números
-      if (Number(libros[i][criterio]) === Number(valor)) {
-        librosEncontrados.push(libros[i]);
-      }
-    } else {
-      if (valorLibro && String(valorLibro).trim().toLowerCase() === String(valor).trim().toLowerCase()) {
-        //Si el libro dentro del array bajo el criterio parametrizado coincide con el valor dado, entonces se guarda en el array de libros encontrados.
-        librosEncontrados.push(libros[i]);
-      }
-    }
-  }
-  // Condiciones para imprimir un mensaje específico dependiendo de la cantidad de libros encontrados.
-  if (librosEncontrados.length === 1) {
-    return `\n**Libro encontrado:**\n${imprimirLibros(librosEncontrados)}\n`;
-  } else if (librosEncontrados.length > 1) {
-    return `\n**Libros encontrados:**\n${imprimirLibros(librosEncontrados)}\n`;
-  }
-  // Si no se encontró ningún libro, se retorna un mensaje de error.
-  return `\n**No se encontró ningún libro con la información proporcionada**\n`;
-}
-
-/*
-  Función para imprimir el menú de ordenamiento
-  @returns {void}
-*/
-const imprimirMenuOrdenamiento = () => {
-  // Se inicializa una variable como null para limpiar el estado anterior y evitar errores.
-  let opcion = null;
-  // Bucle para iterar hasta que la opcion sea 0.
-  do {
-    // Se imprime el menu de ordenamiento.
-    console.log('\nCriterios de ordenamiento\n');
-    console.log('1. Por título');
-    console.log('2. Por año de publicación');
-    console.log('0. Regresar al menú principal\n');
-    // Se solicita al usuario que ingrese una opción segun el menu impreso.
-    const opcion = Number(prompt('Ingrese el número del criterio de ordenamiento: '));
-    // Se procesa la opcion ingresada por el usuario y se retorna el mensaje correspondiente.
-    switch (opcion) {
-      case 1:
-        return ordenarLibros('titulo');
-      case 2:
-        return ordenarLibros('anio');
-      case 0:
-        return `\nRegresando al menú principal...\n`;
-      default:
-        return `\nOpción no válida\n`;
-    }
-  } while (opcion !== 0);
 }
 
 /*
@@ -327,6 +237,80 @@ const imprimirMenuBusquedaCriterio = () => {
 }
 
 /*
+  Función linear para buscar un libro mediante un criterio y un valor
+  @param {string} criterio - Criterio de búsqueda
+  @param {string} valor - Valor de búsqueda
+  @returns {string} - Mensaje de éxito o error
+*/
+const buscarLibro = (criterio, valor) => {
+  // Se inicializa un array vacío para almacenar los libros encontrados.
+  let librosEncontrados = [];
+
+  // Bucle para iterar por el array de libros.
+  for (let i = 0; i < libros.length; i++) {
+    const valorLibro = libros[i][criterio];
+    // Condiciones para buscar el libro por disponibilidad
+    if (criterio === 'disponible') {
+      if (valorLibro === valor) {
+        // Si el libro dentro del array bajo el criterio parametrizado coincide con el valor dado, entonces se guarda en el array de libros encontrados.
+        librosEncontrados.push(libros[i]);
+      }
+    } else if (criterio === 'anio' || criterio === 'id') {
+      // Para id y anio, se comparan como números
+      if (Number(libros[i][criterio]) === Number(valor)) {
+        // Si el libro dentro del array bajo el criterio parametrizado coincide con el valor dado, entonces se guarda en el array de libros encontrados.
+        librosEncontrados.push(libros[i]);
+      }
+    } else {
+      // Para otros criterios, se comparan como strings
+      if (valorLibro && String(valorLibro).trim().toLowerCase() === String(valor).trim().toLowerCase()) {
+        // Si el libro dentro del array bajo el criterio parametrizado coincide con el valor dado, entonces se guarda en el array de libros encontrados.
+        librosEncontrados.push(libros[i]);
+      }
+    }
+  }
+
+  // Condiciones para imprimir un mensaje específico dependiendo de la cantidad de libros encontrados.
+  if (librosEncontrados.length === 1) {
+    return `\n**Libro encontrado:**\n${imprimirLibros(librosEncontrados)}\n`;
+  } else if (librosEncontrados.length > 1) {
+    return `\n**Libros encontrados:**\n${imprimirLibros(librosEncontrados)}\n`;
+  }
+  // Si no se encontró ningún libro, se retorna un mensaje de error.
+  return `\n**No se encontró ningún libro con la información proporcionada**\n`;
+}
+
+/*
+  Función para imprimir el menú de ordenamiento
+  @returns {void}
+*/
+const imprimirMenuOrdenamiento = () => {
+  // Se inicializa una variable como null para limpiar el estado anterior y evitar errores.
+  let opcion = null;
+  // Bucle para iterar hasta que la opción sea 0.
+  do {
+    // Se imprime el menú de ordenamiento.
+    console.log('\nCriterios de ordenamiento\n');
+    console.log('1. Por título');
+    console.log('2. Por año de publicación');
+    console.log('0. Regresar al menú principal\n');
+    // Se solicita al usuario que ingrese una opción según el menú impreso.
+    const opcion = Number(prompt('Ingrese el número del criterio de ordenamiento: '));
+    // Se procesa la opción ingresada por el usuario y se retorna el mensaje correspondiente.
+    switch (opcion) {
+      case 1:
+        return ordenarLibros('titulo');
+      case 2:
+        return ordenarLibros('anio');
+      case 0:
+        return `\nRegresando al menú principal...\n`;
+      default:
+        return `\nOpción no válida\n`;
+    }
+  } while (opcion !== 0);
+}
+
+/*
   Función para ordenar los libros por un criterio
   @param {string} criterio - Criterio de ordenamiento
   @returns {string} - Mensaje de éxito
@@ -339,6 +323,96 @@ const ordenarLibros = (criterio) => {
       return ordenarPorAnio();
     default:
       return `\nHubo un error al ordenar los libros.\n`;
+  }
+}
+
+/*
+  Función para ordenar los libros por título alfabéticamente
+  @returns {string} - Mensaje de éxito
+*/
+const ordenarPorTitulo = () => {
+  // Se obtiene la longitud del array de libros
+  const n = libros.length;
+  // Se inicializa una variable para controlar el intercambio de libros
+  let intercambio;
+
+  do {
+    intercambio = false;
+    for (let i = 0; i < n - 1; i++) {
+      // Se compara el título del libro actual con el título del libro siguiente.
+      if (libros[i].titulo.localeCompare(libros[i + 1].titulo) > 0) {
+        // Se intercambian los libros si están en el orden incorrecto.
+        const temporal = libros[i];
+        libros[i] = libros[i + 1];
+        libros[i + 1] = temporal;
+        intercambio = true;
+      }
+    }
+  } while (intercambio); // Continua el bucle hasta que no haya más intercambios.
+
+  return `\n**Libros ordenados por título alfabéticamente correctamente.**\n${imprimirLibros(libros)}`;
+}
+
+/*
+  Función para ordenar los libros por año de publicación
+  @returns {string} - Mensaje de éxito
+*/
+const ordenarPorAnio = () => {
+  // Se obtiene la longitud del array de libros
+  let n = libros.length;
+  // Se inicializa una variable para controlar el intercambio de libros
+  let intercambio;
+
+  for (let i = 0; i < n - 1; i++) {
+    intercambio = false;
+    // Bucle para comparar e intercambiar los libros.
+    for (let j = 0; j < n - 1 - i; j++) {
+      // Se compara la propiedad 'anio' de los libros adyacentes.
+      if (libros[j].anio > libros[j + 1].anio) {
+        // Se intercambian los libros si están en el orden incorrecto.
+        let temporal = libros[j];
+        libros[j] = libros[j + 1];
+        libros[j + 1] = temporal;
+        intercambio = true;
+      }
+    }
+    // Si ya no se intercambiaron más libros, se termina el bucle.
+    if (!intercambio) {
+      break;
+    }
+  }
+  return `\n**Libros ordenados por año de publicación correctamente.**\n${imprimirLibros(libros)}`;
+}
+
+/*
+  Función para borrar un libro por su ID.
+  @param {number} id - ID del libro a borrar
+  @returns {string} - Mensaje de éxito o error
+*/
+const borrarLibro = (id) => {
+  // Se busca el libro a borrar por su ID.
+  const libroABorrar = libros.find((libro) => libro.id === id);
+  // Si se encuentra el libro
+  if (libroABorrar) {
+    // Se evalúa si está prestado
+    if (!libroABorrar.disponible) {
+      // Si está prestado, hacer un map cuyo resultado se va a guardar en el mismo array de usuarios (para actulizarlo)
+      usuarios = usuarios.map((usuario) => {
+        // Por el array librosPrestados de cada usuario, va a evaluarse la existencia del valor al id a borrar, y se retorna el índice donde se encuentra
+        const indiceEncontrado = usuario.librosPrestados.indexOf(libroABorrar.id)
+        // Si retorna un índice
+        if (indiceEncontrado !== -1) {
+          // Se borra el libro prestado del arreglo de librosPrestados perteneciente al usuario
+          usuario.librosPrestados.splice(indiceEncontrado, 1)
+        }
+        return usuario
+      })
+    }
+    libros = libros.filter((libro) => libro.id !== libroABorrar.id);
+    return `\n**Libro ${libroABorrar.titulo} borrado correctamente**\n`;
+  } else {
+    // Si no se encuentra el libro, se retorna un mensaje de error.
+    return `\n**No se encontró ningún libro con el ID ${id}**\n`;
   }
 }
 
@@ -358,24 +432,44 @@ const imprimirLibros = (librosAImprimir) => {
 }
 
 /*
-  Función para obtener la información de los libros prestados a un usuario
-  @param {number} idUsuario - Indice del usuario en el array de usuarios
-  @returns {string} - String formateado con la información de los libros prestados
+  Función para procesar los datos de un usuario
+  @returns {string} - Mensaje de éxito o error
 */
-const imprimirLibrosPrestadosAUsuario = (idUsuario) => {
-  // Se inicializa una variable resultado como string vacío para almacenar la información de los libros.
-  let resultado = '';
-  // Se obtiene el array de libros prestados del usuario mediante el indice del array de usuarios. Luego se busca el titulo de cada libro prestado en el array de libros.
-  const librosPrestados = usuarios[idUsuario].librosPrestados.map((id) => libros.find((libro) => libro.id === id).titulo).join(', ');
-  // Si el array de libros prestados no está vacío, se agrega la información de los libros prestados al resultado.
-  if (librosPrestados.length > 0) {
-    resultado += `\n   Libros prestados: ${librosPrestados}\n`;
-  } else {
-    // Si el array de libros prestados está vacío, se agrega un mensaje de que el usuario no tiene ningún libro prestado al resultado.
-    resultado += `\n   Libros prestados: No tiene ningún libro prestado\n`;
+const procesarUsuario = () => {
+  // Se imprimen los prompts para la toma de datos del nuevo usuario
+  console.log('\n**Datos del nuevo usuario**\n');
+  const nombre = prompt('Ingrese el nombre: ').trim();
+  const email = prompt('Ingrese el email: ').trim();
+
+  // Verificar si el usuario ya existe antes de agregarlo
+  if (verificarExistenciaUsuario(email)) {
+    return `\n**Este usuario ya está registrado**\n`;
   }
-  // Se retorna el resultado.
-  return resultado;
+  // Pasar los datos procesados a la función para registrar el usuario
+  return registrarUsuario(nombre, email);
+}
+
+/*
+  Función para validar la existencia de un usuario a base de su email.
+  @param {string} emailUsuario - Email del usuario a verificar
+  @returns {boolean} - True si el usuario existe, false si no existe
+*/
+const verificarExistenciaUsuario = (emailUsuario) => {
+  return usuarios.some((usuario) => usuario.email === emailUsuario);
+}
+
+/*
+  Función para agregar un usuario al arreglo de usuarios
+  @param {Object} usuario - Objeto del usuario a registrar
+  @returns {string} - Mensaje de éxito
+*/
+const registrarUsuario = (nombre, email) => {
+  // Se crea un nuevo objeto usuario con los datos procesados, incluyendo una función que genera un id único para el usuario.
+  const usuarioNuevo = { id: generarId(usuarios), nombre: nombre, email: email, librosPrestados: [] }
+  // Se agrega el nuevo usuario al arreglo de usuarios.
+  usuarios.push(usuarioNuevo);
+  // Se retorna un mensaje de éxito.
+  return `\n**Usuario ${usuarioNuevo.nombre} registrado correctamente**\n`;
 }
 
 /*
@@ -387,83 +481,32 @@ const mostrarTodosLosUsuarios = () => {
   let resultado = ''
   // Se itera por cada usuario del array usuarios y se agrega la información de cada usuario al resultado.
   usuarios.forEach((usuario, index) => {
-    resultado += `\n${index + 1}) ID: ${index} - Nombre: ${usuario.nombre} - Email: ${usuario.email}`
+    resultado += `\n${index + 1}) ID: ${usuario.id} - Nombre: ${usuario.nombre} - Email: ${usuario.email}`
     // La logica para imprimir la informacion de los libros prestados se separa para ser reusada en otras funciones.
-    resultado += imprimirLibrosPrestadosAUsuario(index);
+    resultado += imprimirLibrosPrestadosAUsuario(usuario.id);
   });
   return resultado;
 }
 
 /*
-  Función para ordenar los libros por título alfabéticamente
-  @returns {string} - Mensaje de éxito
+  Función para obtener la información de los libros prestados a un usuario
+  @param {number} idUsuario - Indice del usuario en el array de usuarios
+  @returns {string} - String formateado con la información de los libros prestados
 */
-const ordenarPorTitulo = () => {
-  const n = libros.length;
-  let intercambio;
-
-  do {
-    intercambio = false;
-    for (let i = 0; i < n - 1; i++) {
-      // Se compara el título del libro actual con el título del libro siguiente.
-      if (libros[i].titulo.localeCompare(libros[i + 1].titulo) > 0) {
-        // Se intercambian los libros si están en el orden incorrecto.
-        const temporal = libros[i];
-        libros[i] = libros[i + 1];
-        libros[i + 1] = temporal;
-        intercambio = true;
-      }
-    }
-  } while (intercambio); // Continua el bucle hasta que no haya mas intercambios.
-
-  return `\n**Libros ordenados por título alfabéticamente correctamente.**\n${imprimirLibros(libros)}`;
-}
-
-/*
-  Función para ordenar los libros por año de publicación
-  @returns {string} - Mensaje de éxito
-*/
-const ordenarPorAnio = () => {
-  let n = libros.length;
-  let intercambio;
-
-  for (let i = 0; i < n - 1; i++) {
-    intercambio = false;
-    // Bucle para comparar e intercambiar los libros.
-    for (let j = 0; j < n - 1 - i; j++) {
-      // Se compara la propiedad 'anio' de los libros adyacentes.
-      if (libros[j].anio > libros[j + 1].anio) {
-        // Se intercambian los libros si están en el orden incorrecto.
-        let temporal = libros[j];
-        libros[j] = libros[j + 1];
-        libros[j + 1] = temporal;
-        intercambio = true;
-      }
-    }
-    // Si ya no se intercambiaron mas libros, se termina el bucle.
-    if (!intercambio) {
-      break;
-    }
-  }
-  return `\n**Libros ordenados por año de publicación correctamente.**\n${imprimirLibros(libros)}`;
-}
-
-/*
-  Función para borrar un libro por su ID.
-  @param {number} id - ID del libro a borrar
-  @returns {string} - Mensaje de éxito o error
-*/
-const borrarLibro = (id) => {
-  // Se busca el libro a borrar por su ID.
-  const libroABorrar = libros.find((libro) => libro.id === id);
-  // Si se encuentra el libro, se borra.
-  if (libroABorrar) {
-    libros = libros.filter((libro) => libro.id !== libroABorrar.id);
-    return `\n**Libro ${libroABorrar.titulo} borrado correctamente**\n`;
+const imprimirLibrosPrestadosAUsuario = (idUsuario) => {
+  // Se inicializa una variable resultado como string vacío para almacenar la información de los libros.
+  let resultado = '';
+  // Se obtiene primero el usuario por su id. Luego a ese resultado de find se le aplica un map a su atributo de librosPrestados, en el cual se busca el titulo de cada libro prestado en el array de libros.
+  const librosPrestados = usuarios.find((usuario) => usuario.id === idUsuario).librosPrestados.map((id) => libros.find((libro) => libro.id === id).titulo).join(', ');
+  // Si el array de libros prestados no está vacío, se agrega la información de los libros prestados al resultado.
+  if (librosPrestados.length > 0) {
+    resultado += `\n   Libros prestados: ${librosPrestados}\n`;
   } else {
-    // Si no se encuentra el libro, se retorna un mensaje de error.
-    return `\n**No se encontró ningún libro con el ID ${id}**\n`;
+    // Si el array de libros prestados está vacío, se retorna un mensaje sobre el estado vacío del array.
+    resultado += `\n   Libros prestados: No se le ha prestado ningún libro\n`;
   }
+  // Se retorna el resultado.
+  return resultado;
 }
 
 /*
@@ -473,13 +516,12 @@ const borrarLibro = (id) => {
 */
 const buscarUsuario = (email) => {
   let resultado = '';
-  // Se busca el usuario por su email.
-  const usuario = usuarios.find((usuario) => usuario.email.toLowerCase() === email);
-  const usuarioId = usuarios.findIndex((usuario) => usuario.email.toLowerCase() === email);
+  // Se busca el usuario por su email, normalizando el string para evitar errores de comparación.
+  const usuario = usuarios.find((usuario) => usuario.email.toLowerCase() === email.toLowerCase());
   // Si se encuentra el usuario, se retorna un mensaje de éxito con la información del usuario y los libros prestados.
   if (usuario) {
-    resultado += `\n**Usuario encontrado**\n\nID: ${usuarioId} - Nombre: ${usuario.nombre} - Email: ${usuario.email}`;
-    resultado += imprimirLibrosPrestadosAUsuario(usuarioId);
+    resultado += `\n**Usuario encontrado**\n\nID: ${usuario.id} - Nombre: ${usuario.nombre} - Email: ${usuario.email}`;
+    resultado += imprimirLibrosPrestadosAUsuario(usuario.id);
     return resultado;
   } else {
     // Si no se encuentra el usuario, se retorna un mensaje de error.
@@ -494,15 +536,16 @@ const buscarUsuario = (email) => {
   @returns {string} - Mensaje de éxito o error
 */
 const borrarUsuario = (nombre, email) => {
-  // Se busca el usuario a borrar por su nombre y email y se obtiene el indice en el que se encuentra.
-  const usuarioId = usuarios.findIndex((usuario) => usuario.email.toLowerCase() === email && usuario.nombre.toLowerCase() === nombre);
+  // Se busca el usuario a borrar por su nombre y email, normalizando los strings para evitar errores de comparación.
+  const usuarioABorrar = usuarios.find((usuario) => usuario.email.toLowerCase() === email && usuario.nombre.toLowerCase() === nombre);
   // Si se encuentra el usuario, se borra.
-  if (usuarioId !== -1) {
+  if (usuarioABorrar) {
     // Validar si el usuario tiene libros prestados y si los tiene, se retorna un mensaje de error.
-    if (usuarios[usuarioId].librosPrestados.length > 0) {
+    if (usuarioABorrar.librosPrestados.length > 0) {
       return `\n**Usuario ${nombre} tiene libros por regresar y no puede ser borrado**\n`;
     } else {
-      usuarios.splice(usuarioId, 1);
+      // Se borra el usuario del arreglo de usuarios usando el metodo de filer, que lo que hace es filtrar el arreglo sin el usuario con el id del usuario que se desea borrar.
+      usuarios = usuarios.filter((usuario) => usuario.id !== usuarioABorrar.id);
       return `\n**Usuario ${nombre} borrado correctamente**\n`;
     }
   } else {
@@ -518,8 +561,8 @@ const borrarUsuario = (nombre, email) => {
   @returns {string} - Mensaje de éxito o error
 */
 const prestarLibro = (idLibro, idUsuario) => {
-  // Se busca el usuario mediante el indice del array de usuarios ya que no tiene una propiedad de id.
-  const usuario = usuarios[idUsuario];
+  // Se busca el usuario mediante el id del usuario.
+  const usuario = usuarios.find((usuario) => usuario.id === idUsuario);
   // Se busca el libro mediante el id del libro.
   const libro = libros.find((libro) => libro.id === idLibro);
   // Si se encuentra el usuario y el libro
@@ -557,8 +600,8 @@ const prestarLibro = (idLibro, idUsuario) => {
   @returns {string} - Mensaje de éxito o error
 */
 const devolverLibro = (idLibro, idUsuario) => {
-  // Se busca el usuario mediante el indice del array de usuarios ya que no tiene una propiedad de id.
-  const usuario = usuarios[idUsuario];
+  // Se busca el usuario mediante el id del usuario.
+  const usuario = usuarios.find((usuario) => usuario.id === idUsuario);
   // Se busca el libro mediante el id del libro.
   const libro = libros.find((libro) => libro.id === idLibro);
   // Si se encuentra el libro y el usuario
@@ -598,7 +641,7 @@ const generarReporteLibros = () => {
   // Declarar e inicializar variable para almacenar el reporte.
   let reporte = '';
   //Cantidad total de libros. Se lee el largo del arreglo que alberga libros y se le suma 1.
-  reporte += `\n* Cantidad total de libros: ${libros.length + 1}`;
+  reporte += `\n* Cantidad total de libros: ${libros.length}`;
   //Cantidad de libros prestados. Se reduce el arreglo mediante una funcion que valida la propiedad 'disponible' de cada libro, sumando los que no estén disponibles.
   reporte += `\n* Cantidad de libros prestados: ${libros.reduce((total, libro) => !libro.disponible ? total + 1 : total, 0)}`;
   //Cantidad de libros por genero. Para legibilidad se separa en otra función.
@@ -618,14 +661,43 @@ const generarReporteLibros = () => {
 const librosPorGenero = () => {
   // Variable para almacenar el reporte
   let librosPorGenero = '';
-  // Se mapea el arreglo de libros para obtener el genero de cada libro. El resultado se filtra usando el metodo indexOf para verificar si el indice del genero iterado es el mismo que el indice obtenido del metodo filtro. Si no es, significa que el genero es repetido y se ignora.
+  // Se mapea el arreglo de libros para obtener el género de cada libro. El resultado se filtra usando el metodo indexOf para verificar si el índice del género iterado es el mismo que el índice obtenido del método filter. Si no es, significa que el género es repetido y se ignora.
   const generos = libros.map((libro) => libro.genero).filter((genero, index, self) => self.indexOf(genero) === index);
-  // Itera por cada genero y acumula una cadena que imprime el nombre del género y el resultado de un filtro al arreglo de libros, donde se filtra que el genero del libro iterado sea igual al genero que se esta iterando, de ser asi, se suma.
+  // Itera por cada género y acumula una cadena que imprime el nombre del género y el resultado de un filtro al arreglo de libros, donde se filtra que el género del libro iterado sea igual al género que se está iterando, de ser así, se suma.
   generos.forEach((genero) => {
     librosPorGenero += `\n- ${genero}: ${libros.filter((libro) => libro.genero === genero).length}`;
   });
   // Se retorna la cadena acumulada.
   return librosPorGenero;
+}
+
+/*
+  Función para identificar libros por palabras
+  @returns {string} - Mensaje de éxito
+*/
+const librosConPalabrasEnTitulo = () => {
+  // Filtrar libros cuyo título contiene más de una palabra alfabética y retornar solo los títulos
+  const librosIdentificados = libros.filter((libro) => {
+    // Dividir el título en palabras
+    const palabras = libro.titulo.split(' ');
+    // Contar cuántas palabras son alfabéticas (solo letras, sin números ni caracteres especiales)
+    let palabrasAlfabeticas = 0;
+    for (let i = 0; i < palabras.length; i++) {
+      // Para legibilidad, se crea una función para verificar si una palabra es alfabética.
+      if (esPalabraAlfabetica(palabras[i])) {
+        palabrasAlfabeticas++;
+      }
+    }
+    // Retornar true si hay más de una palabra alfabética
+    return palabrasAlfabeticas > 1;
+    //Esto extrae solo los titulos de cada objeto libro que cumplen la condicion del filtro.
+  });
+  // Si se encontraron libros con más de una palabra alfabética, se retorna el mensaje de éxito con la información de los libros identificados.
+  if (librosIdentificados.length > 0) {
+    return `\n**Libros identificados**\n${imprimirLibros(librosIdentificados)}\n`;
+  } else {
+    return `\n**No se encontraron libros con más de una palabra alfabética**\n`;
+  }
 }
 
 /*
@@ -658,35 +730,6 @@ const esPalabraAlfabetica = (palabra) => {
 };
 
 /*
-  Función para identificar libros por palabras
-  @returns {string} - Mensaje de éxito
-*/
-const identificarLibrosPorPalabras = () => {
-  // Filtrar libros cuyo título contiene más de una palabra alfabética y retornar solo los títulos
-  const librosIdentificados = libros.filter((libro) => {
-    // Dividir el título en palabras
-    const palabras = libro.titulo.split(' ');
-    // Contar cuántas palabras son alfabéticas (solo letras, sin números ni caracteres especiales)
-    let palabrasAlfabeticas = 0;
-    for (let i = 0; i < palabras.length; i++) {
-      // Para legibilidad, se crea una función para verificar si una palabra es alfabética.
-      if (esPalabraAlfabetica(palabras[i])) {
-        palabrasAlfabeticas++;
-      }
-    }
-    // Retornar true si hay más de una palabra alfabética
-    return palabrasAlfabeticas > 1;
-    //Esto extrae solo los titulos de cada objeto libro que cumplen la condicion del filtro.
-  });
-  // Si se encontraron libros con más de una palabra alfabética, se retorna el mensaje de éxito con la información de los libros identificados.
-  if (librosIdentificados.length > 0) {
-    return `\n**Libros identificados**\n${imprimirLibros(librosIdentificados)}\n`;
-  } else {
-    return `\n**No se encontraron libros con más de una palabra alfabética**\n`;
-  }
-}
-
-/*
   Función para calcular estadísticas
   @returns {string} - Mensaje de éxito
 */
@@ -694,7 +737,7 @@ const calcularEstadisticas = () => {
   let estadisticas = '';
   //Promedio de años de publicacion de los libros usando math
   estadisticas += `\n* Promedio de años de publicación de los libros: ${promedioAnios()}`;
-  //Año de publicacion más frecuente
+  // Año de publicacion más frecuente, leer el disclaimer que dejé sobre la funcion de anioMasFrecuente. Si el resultado viene vacío se imprime la string de vacío.
   estadisticas += `\n* Año de publicación más frecuente: ${anioMasFrecuente() || 'No hay un año de publicación recurrente'}`;
   // Diferencia de años entre el libro más antiguo y el más nuevo usando math
   estadisticas += `\n* Diferencia de años entre el libro más antiguo y el más nuevo: ${diferenciaAnios()}\n`;
@@ -710,6 +753,8 @@ const promedioAnios = () => {
   return Math.round(libros.map((libro) => Number(libro.anio)).reduce((total, anio) => total + anio, 0) / libros.length);
 }
 
+/* Disclaimer: Entiendo que hay que usar Math para resolver esto pero es que no es posible bajo la lógica definida. "Año de publicación más frecuente" implica que hay un número repetido en un grupo de números, y no es necesario hacer ningún tipo de evaluación matemática (ninguna que ofrezca Math) para determinar qué número se repite. No le hallo sentido en forzar el uso de Math en esta función. Pero si piensan quitarme puntos porque no usé math, adelante. Apreciaría que expliquen claramente cuál era la intención de esta función para aplicarlo en un futuro. */
+
 /*
   Función para obtener el año de publicación más frecuente
   @returns {number} - Año de publicación más frecuente
@@ -724,9 +769,9 @@ const anioMasFrecuente = () => {
   @returns {number} - Diferencia de años entre el libro más antiguo y el más nuevo
 */
 const diferenciaAnios = () => {
-  //Obtener lista de años
+  //Obtener lista de años al extraer el año de cada libro a traves de un map aplicado al objeto libros
   const anios = libros.map((libro) => libro.anio)
-  // El operador spread (...) es usado para expandir el arreglo en sus elementos individuales sin necesidad de hacer un bucle para pasarles el valor uno a uno a los metodo Math.max y Math.min.
+  // El operador spread (...) es usado para expandir el arreglo en sus elementos individuales sin necesidad de hacer un bucle para pasarles el valor uno a uno a los métodos Math.max y Math.min. Se resta el máximo y mínimo obtenidos de los operadores Math .max y .min, el resultado es la diferencia.
   return Math.max(...anios) - Math.min(...anios);
 }
 
@@ -737,11 +782,14 @@ const diferenciaAnios = () => {
 const normalizarDatos = () => {
   // Iterar por cada libro y normalizar atributos segun la especificación dada.
   libros.forEach((libro) => {
+    // .toUpperCase vuelve mayúsculas todos los caracteres del string al que se le aplica.
     libro.titulo = libro.titulo.toUpperCase();
+    // Trim elimina espacios en blanco al inicio y final
     libro.autor = libro.autor.trim();
   });
   // Iterar por cada usuario y normalizar atributos segun la especificación dada.
   usuarios.forEach((usuario) => {
+    // .toLowerCase vuelve minúsculoa todos los caracteres del string al que se le aplica.
     usuario.email = usuario.email.toLowerCase();
   });
   // Se retorna un mensaje de éxito.
@@ -785,61 +833,60 @@ const menuPrincipal = () => {
     opcion = Number(prompt('Ingrese un número del proceso que desea realizar: '));
     // Procesar la opción seleccionada
     switch (opcion) {
-      case 1:
+      case 1: // Agregar libro
         // Para mantener un código más legible, se separó la obtención de datos en procesarLibro()
         console.log(procesarLibro());
         break;
-      case 2:
+      case 2: // Buscar libro
         // Para controlar la entrada de datos, se crea funcion para imprimir un menu de opciones controladas.
         console.log(imprimirMenuBusquedaCriterio());
         break;
-      case 3:
+      case 3: // Ordenar libros
         // Para mantener un código más legible, se crea una función para imprimir el menú de ordenamiento
         console.log(imprimirMenuOrdenamiento());
         break;
-      case 4:
-        console.log(borrarLibro(Number(prompt('\nIngrese el ID del libro a borrar: '))));
+      case 4: // Borrar libro
+        console.log(borrarLibro(Number(prompt('Ingrese el ID del libro a borrar: '))));
         break;
-      case 5:
+      case 5: // Registrar usuario
         // Para mantener un código más legible, se separó la obtención de datos en procesarUsuario()
         console.log(procesarUsuario());
         break;
-      case 6:
+      case 6: // Mostrar todos los usuarios
         console.log(mostrarTodosLosUsuarios());
         break;
-      case 7:
+      case 7: // Buscar usuario
         console.log(buscarUsuario(prompt('Ingrese el email del usuario a buscar: ').trim().toLowerCase()));
         break;
-      case 8:
+      case 8: // Borrar usuario
         console.log(borrarUsuario(prompt('Ingrese el nombre del usuario a borrar: ').trim().toLowerCase(), prompt('Ingrese el email del usuario a borrar: ').trim().toLowerCase()));
         break;
-      case 9:
+      case 9: // Prestar libro
         console.log(prestarLibro(Number(prompt('Ingrese el ID del libro a prestar: ')), Number(prompt('Ingrese el ID del usuario al que desea prestarle el libro: '))));
         break;
-      case 10:
+      case 10: // Devolver libro
         console.log(devolverLibro(Number(prompt('Ingrese el ID del libro a devolver: ')), Number(prompt('Ingrese el ID del usuario que desea devolver el libro: '))));
         break;
-      case 11:
+      case 11: // Generar reportede libros
         console.log(generarReporteLibros());
         break;
-      case 12:
-        console.log(identificarLibrosPorPalabras());
+      case 12: // Identificar libros por palabras
+        console.log(librosConPalabrasEnTitulo());
         break;
-      case 13:
+      case 13: // Calcular estadisticas
         console.log(calcularEstadisticas());
         break;
-      case 14:
+      case 14: // Normlizar datos
         console.log(normalizarDatos());
         break;
-      case 15:
-        //En las especificaciones no se pide mostrar los libros, entonces agregué la opcion para mostrarlos.
+      case 15: // Mostrar libros (agregué esta función para mayor facilidad de visibilidad de los libros agregados o eliminados)
         console.log(`\n**Lista de libros**\n${imprimirLibros(libros)}\n`);
         break;
-      case 0:
+      case 0: // Salir del program
         salir = true;
         console.log('Saliendo del programa...');
         break;
-      default:
+      default: // Si una opción no forma parte del menú, se reimprime el menú
         console.log('Opción no válida');
         break;
     }
